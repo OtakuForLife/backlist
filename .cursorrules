@@ -1,0 +1,9 @@
+# Backlist
+
+- One container. Python, FastAPI, SQLite, Pillow, watchdog. No extra services.
+- The first input folder is the work. Each work stores a profile in config. `Manga` → `{profile}/{series}/{series} Volume {volume} Chapter {chapter}.cbz`. `Novel` → one CBZ per volume. A new work waits for one mapping, then clean chapters import on their own.
+- Series Edit sets the type, volume, and chapter. Applying a rename or merge first shows every full path before and after. Commit renames when the path differs and merges every CBZ that lands on the same path.
+- A successful import moves the source out of the input after the CBZ or cover is validated. A failed or skipped import leaves the source.
+- Unraid `/mnt/user` needs polling, not inotify.
+- Paths from the API stay inside the configured input and output roots. No shell calls with file names.
+- Config that was saved in `/appdata/config.json` wins over environment variables.
